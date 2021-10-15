@@ -1,51 +1,48 @@
-#include <iostream>
-#include <algorithm>
-
-#include <string>
-#include <string.h>
-
-#include <math.h>
-#include <stdio.h>
-
-#include <stack>
-#include <queue>
-#include <vector>
-
-#include <map>
-#include <unordered_map>
-#include <set>
-#include <unordered_set>
-
-#define int long long
-#define LL long long
-#define endl '\n'
-#define PII pair<int, int>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-const int N = 50 + 10;
-
-int32_t main()
+int main(int argc, char *argv[])
 {
-	ios::sync_with_stdio(0);
-	cin.tie(0); cout.tie(0);
-
-	freopen("C:\\Users\\DPH\\Documents\\Tencent Files\\2398212574\\FileRecv\\yq_in.txt", "r", stdin);
-	freopen("C:\\Users\\DPH\\Documents\\Tencent Files\\2398212574\\FileRecv\\cout.txt", "w", stdout);
-
+	int n;
 	string s, ss;
-	int num;
-	map<string, vector<pair<string, int> >, greater<string> > mp;
+	
+	string cmdn;
+		
+	if(argc == 4)
+	{
+		for(int i = 0; i < strlen(argv[3]); i ++ ) cmdn += argv[3][i];
+	}
 
-	while(cin >> s >> ss >> num) {
-		mp[s].push_back(pair<string, int>(ss, num));
+	string In = "C:\\Users\\DPH\\Desktop\\RJGC\\";
+	string Out = "C:\\Users\\DPH\\Desktop\\RJGC\\";
+
+	for(int i = 0; i < strlen(argv[1]); i ++ ) In += argv[1][i];
+	for(int i = 0; i < strlen(argv[2]); i ++ ) Out += argv[2][i];
+
+	freopen(In.c_str(), "r", stdin);
+	freopen(Out.c_str(), "w", stdout);
+
+	map<string, vector< pair<string, int> > > mp;
+
+	while(cin >> s >> ss >> n)
+	{
+		if(argc == 4 && s == cmdn) cout << ss << "	" << n << endl;
+		mp[s].emplace_back( ss, n );
 	}
-	for(auto it : mp) {
-		cout << it.first << '\n';
-		for(auto i : it.second) {
-			cout << i.first << ' ' << i.second << '\n';
+
+	if(argc == 3)
+	{
+		for(auto it : mp)
+		{
+			cout << it.first << endl;
+			for(auto itt : it.second)
+			{
+				cout << itt.first << "	" << itt.second << endl;
+			}
+			cout << endl;
 		}
-		cout << '\n';
 	}
+
 	return 0;
 }
